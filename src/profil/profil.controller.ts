@@ -20,16 +20,19 @@ export class ProfilController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
+    this.bdd.query("SELECT * FROM profil WHERE id = ?", [id]);
     return "Todo";
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateProfilDto) {
+    this.bdd.query("UPDATE profil SET pseudo = ?, dateInscription = ?, email = ?, password = ? WHERE id = ?", [updateProfilDto.pseudo, updateProfilDto.dateInscription, updateProfilDto.email, updateProfilDto.password, id]);
     return "Todo";
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
+    this.bdd.query("DELETE FROM profil WHERE id = ?", [id]);
     return "Todo";
   }
 }
