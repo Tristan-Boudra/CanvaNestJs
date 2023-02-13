@@ -4,16 +4,17 @@ import { DataSource } from 'typeorm';
 
 @Controller('profil')
 export class ProfilController {
-  constructor(@InjectDataSource() private bdd: DataSource) {}
+  constructor(@InjectDataSource() private bdd: DataSource) { }
 
   @Post()
   create(@Body() createProfilDto) {
-    this.bdd.query("INSERT INTO profil (nom, prenom, email, password) VALUES (?, ?, ?, ?)", [createProfilDto.nom, createProfilDto.prenom, createProfilDto.email, createProfilDto.password]);
+    this.bdd.query("INSERT INTO profil (pseudo, dateInscription, email, password) VALUES (?, ?, ?, ?)", [createProfilDto.pseudo, createProfilDto.dateInscription, createProfilDto.email, createProfilDto.password]);
     return "Todo";
   }
 
   @Get()
   findAll() {
+    this.bdd.query("SELECT * FROM profil");
     return "Todo";
   }
 
